@@ -1,0 +1,7 @@
+
+[action]
+name = "MyAction"
+
+[action.args]
+name = "REPORT_{{ENV}}"
+client = "FOO"
