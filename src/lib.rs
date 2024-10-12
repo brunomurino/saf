@@ -9,19 +9,32 @@
 //! ```ignore
 //! cargo init
 //! ```
+//! The add the following dependencies:
+//! ```ignore
+//! [dependencies]
+//! saf = "0.0.2"
+//! enum_dispatch = "0.3.13"
+//! serde = { version = "1.0.205", features = ["derive"] }
+//! serde_json = "1.0.122"
+//! ```
+//! Then add `cargo-run-bin` as a dev dependency to be able to run the SAF binary without installing SAF globally
 //! ```ignore
 //! cargo add cargo-run-bin --dev
 //! ```
 //! Now add this to your Cargo.toml
 //! ```ignore
 //! [package.metadata.bin]
-//! saf = { version = "0.0.1" }
+//! saf = { version = "0.0.3", bins = ["main"] }
 //! ```
 //! Now you can call the SAF cli with
 //! ```ignore
 //! cargo bin saf <COMMAND>
 //! ```
-//! Now run `saf init`
+//! Now run `cargo bin saf init`
+//! And finally run:
+//! ```ignore
+//! cargo run demo --job-config-repo __jobs
+//! ```
 
 pub mod job_config_file;
 

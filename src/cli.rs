@@ -10,7 +10,7 @@ pub struct App {
     pub action_args: String,
 
     /// The folder containing transfers config files
-    #[arg(short, long, value_parser=value_parser!(PathBuf))]
+    #[arg(short, long, value_parser=value_parser!(PathBuf), default_value= "__jobs")]
     pub job_config_repo: PathBuf,
 }
 

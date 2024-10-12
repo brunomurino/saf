@@ -3,3 +3,6 @@ build:
 
 test:
     cargo test
+
+rd:
+    cargo run demo

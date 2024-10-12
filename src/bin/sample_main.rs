@@ -14,7 +14,7 @@ mod app {
         impl ActionRunner for MyAction {
             fn run(&self) -> String {
                 println!("hello from MyAction");
-                format!("{}@{}", self.name, self.client)
+                format!("{}@{}", self.name, self.client).to_string()
             }
         }
 
@@ -27,7 +27,7 @@ mod app {
         impl ActionRunner for MyOtherAction {
             fn run(&self) -> String {
                 println!("hello from MyOtherAction");
-                format!("{}@{}", self.name, self.client)
+                format!("{}@{}", self.name, self.client).to_string()
             }
         }
     }

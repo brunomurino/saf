@@ -26,7 +26,7 @@ fn create_file(filename: &Path, content: &str) -> std::io::Result<()> {
 }
 
 fn main() -> std::io::Result<()> {
-    let demo_toml = include_str!("../../__demo_jobs/demo.toml");
+    let demo_toml = include_str!("../../__jobs/demo.toml");
     let sample_main = include_str!("./sample_main.rs");
 
     let args = Args::parse();
