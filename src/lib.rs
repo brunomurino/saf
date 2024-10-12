@@ -5,39 +5,23 @@
 //! 1. Define Jobs (via TOML file) that instantiate an Action Struct with a set of arguments (also specified in the TOML file).
 //! 1. Run a Job via the command line, allowing to further override the Action arguments.
 //!
-//! # Your first Action
-//! 1. To start off, we'll create a trait that we want our Action Structs to implement. Let's keep it simple for now:
+//! To start a new project with SAF, run the following
+//! ```ignore
+//! cargo init
 //! ```
-//! pub trait ActionRunner {
-//!    fn run(&self) -> String;
-//! }
+//! ```ignore
+//! cargo add cargo-run-bin --dev
 //! ```
-//! 2. Now we create an Action Struct that implements this trait:
+//! Now add this to your Cargo.toml
+//! ```ignore
+//! [package.metadata.bin]
+//! saf = { version = "0.0.1" }
 //! ```
-//! pub trait ActionRunner {
-//!    fn run(&self) -> String;
-//! }
-//!
-//! pub struct MyFirstAction {
-//!     pub val: String,
-//! }
-//!
-//! impl ActionRunner for MyFirstAction {
-//!     fn run(&self) -> String {
-//!         println!("Executing MyFirstAction");
-//!         format!("Hello, {}!", self.val)
-//!     }
-//! }
+//! Now you can call the SAF cli with
+//! ```ignore
+//! cargo bin saf <COMMAND>
 //! ```
-//! 3. and a Job specification in a TOML file:
-//! ```toml
-//! [action]
-//! name = "MyFirstAction"
-//!
-//! [action.args]
-//! val = "World"
-//! ```
-//!
+//! Now run `saf init`
 
 pub mod job_config_file;
 

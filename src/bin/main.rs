@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand};
 use std::fs::File;
 use std::io::prelude::*;
+use std::path::Path;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -13,26 +14,27 @@ struct Args {
 #[derive(Subcommand, Debug)]
 enum Commands {
     /// init a new project
-    Init {
-        /// Define name for new project
-        #[arg(short, long)]
-        name: String,
-    },
+    Init {},
 }
 
-fn create_file(filename: &String, content_as_bytes: &[u8]) -> std::io::Result<()> {
+fn create_file(filename: &Path, content: &str) -> std::io::Result<()> {
+    let prefix = filename.parent().unwrap();
+    std::fs::create_dir_all(prefix).unwrap();
     let mut file = File::create(filename)?;
-    file.write_all(content_as_bytes)?;
+    file.write_all(content.as_bytes())?;
     Ok(())
 }
 
 fn main() -> std::io::Result<()> {
-    let sample_main = include_str!("../sample_project/main.rs");
+    let demo_toml = include_str!("../../__demo_jobs/demo.toml");
+    let sample_main = include_str!("./sample_main.rs");
+
     let args = Args::parse();
 
     match &args.command {
-        Some(Commands::Init { name }) => {
-            create_file(name, sample_main.as_bytes())?;
+        Some(Commands::Init {}) => {
+            create_file(Path::new("src/main.rs"), sample_main)?;
+            create_file(Path::new("__jobs/demo.toml"), demo_toml)?;
             Ok(())
         }
         None => Ok(()),
